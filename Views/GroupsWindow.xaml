@@ -1,0 +1,80 @@
+﻿<!-- Views/GroupsWindow.xaml -->
+<UserControl x:Class="LearnSmart.Views.GroupsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="700" 
+             d:DesignWidth="900">
+
+    <Grid Background="#F8FAFC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Border Grid.Row="0" Background="White" Padding="24" CornerRadius="12"
+                BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="📚" FontSize="32" Margin="0,0,16,0"/>
+                <StackPanel>
+                    <TextBlock Text="Учебные группы" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="#0F172A"/>
+                    <TextBlock Text="Управление группами студентов" 
+                               Foreground="#64748B" 
+                               FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Добавление группы -->
+        <Border Grid.Row="1" Background="White" Padding="24" CornerRadius="12"
+                BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtGroupName" 
+                         Width="320" 
+                         Height="48" 
+                         Padding="16,0"
+                         FontSize="15" 
+                         Background="#F8FAFC" 
+                         BorderBrush="#CBD5E1"
+                         VerticalContentAlignment="Center"
+                         Text="ИС-23-1"
+                         ToolTip="Название группы (например, ИС-23-1)"/>
+
+                <Button Content="➕ Создать группу" 
+                        Margin="16,0,0,0"
+                        Click="BtnAddGroup_Click"
+                        Width="180" 
+                        Height="48"
+                        Background="#10B981" 
+                        Foreground="White" 
+                        FontWeight="SemiBold"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Список групп -->
+        <DataGrid x:Name="dgGroups" 
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  RowHeight="56"
+                  Background="White"
+                  BorderBrush="#E2E8F0"
+                  AlternatingRowBackground="#F8FAFC">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="80"/>
+                <DataGridTextColumn Header="Название группы" Binding="{Binding Name}" Width="3*"/>
+                <DataGridTextColumn Header="Количество студентов" Binding="{Binding StudentCount}" Width="180"/>
+                <DataGridTextColumn Header="Средний балл группы" 
+                                    Binding="{Binding AverageScore, StringFormat=F1}" 
+                                    Width="180"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
